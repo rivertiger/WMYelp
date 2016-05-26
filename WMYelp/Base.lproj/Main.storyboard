@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="VGS-bV-upi">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="hEA-TN-xwa">
+            <objects>
+                <navigationController id="VGS-bV-upi" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z6Q-EQ-Obi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Ccn-Af-pvG" kind="relationship" relationship="rootViewController" id="iWT-i5-HDc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ay2-Tn-bx0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-84" y="345"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="eaw-S3-ueZ">
+            <objects>
+                <viewController id="Ccn-Af-pvG" customClass="WMSearchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zvk-Ox-yBn"/>
+                        <viewControllerLayoutGuide type="bottom" id="s0i-6w-nBR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ewP-Uz-wAG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mjF-dR-6ds">
+                                <rect key="frame" x="0.0" y="102" width="600" height="498"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="50" id="Xya-QH-IYJ" customClass="WMSearchResultTableViewCell">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xya-QH-IYJ" id="bc4-Cs-5AU">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHG-xd-OQM">
+                                                    <rect key="frame" x="29" y="14" width="258" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="RHG-xd-OQM" id="Y4l-pe-pG2"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Ccn-Af-pvG" id="1Al-7z-4h9"/>
+                                    <outlet property="delegate" destination="Ccn-Af-pvG" id="Gad-se-EgA"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="WCy-GU-v0j">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Ccn-Af-pvG" id="59y-Ug-P8h"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="mjF-dR-6ds" secondAttribute="trailing" id="7bZ-ew-Bpu"/>
+                            <constraint firstAttribute="trailing" secondItem="WCy-GU-v0j" secondAttribute="trailing" id="8qS-9K-BbL"/>
+                            <constraint firstItem="s0i-6w-nBR" firstAttribute="top" secondItem="mjF-dR-6ds" secondAttribute="bottom" id="TER-2h-JwL"/>
+                            <constraint firstItem="mjF-dR-6ds" firstAttribute="top" secondItem="WCy-GU-v0j" secondAttribute="bottom" id="Wkb-Xt-MPu"/>
+                            <constraint firstItem="WCy-GU-v0j" firstAttribute="top" secondItem="zvk-Ox-yBn" secondAttribute="bottom" id="d1e-Su-YqM"/>
+                            <constraint firstItem="WCy-GU-v0j" firstAttribute="leading" secondItem="ewP-Uz-wAG" secondAttribute="leading" id="lfW-XZ-na7"/>
+                            <constraint firstItem="mjF-dR-6ds" firstAttribute="leading" secondItem="ewP-Uz-wAG" secondAttribute="leading" id="s8C-XD-dXJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="sQm-FK-MYu"/>
+                    <connections>
+                        <outlet property="searchBar" destination="WCy-GU-v0j" id="KhD-6A-EUe"/>
+                        <outlet property="tableView" destination="mjF-dR-6ds" id="mYX-lh-pg7"/>
+                        <segue destination="Ax7-vL-IJp" kind="push" identifier="pushDetail" id="K0P-tw-4Gi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rx4-rM-iyq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="590" y="345"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="5le-hg-Q6S">
+            <objects>
+                <viewController storyboardIdentifier="detailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ax7-vL-IJp" customClass="WMDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IfX-Pi-ygK"/>
+                        <viewControllerLayoutGuide type="bottom" id="ghi-lV-Wbu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BBe-wf-euh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="mDU-G8-KWp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C9N-mG-Gg3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1386" y="345"/>
+        </scene>
+    </scenes>
+</document>
