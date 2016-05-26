@@ -16,7 +16,8 @@ static NSString * const kAPIHost           = @"api.yelp.com";
 static NSString * const kSearchPath        = @"/v2/search/";
 static NSString * const kBusinessPath      = @"/v2/business/";
 static NSString * const kSearchLimit       = @"3";
-
+static NSString * const kDefaultLimit      = @"10";
+static NSString * const kDefaultOffset     = @"0";
 
 @interface WMRequestManager ()
 @property (nonatomic, readwrite) WMSearchTermModel *currentSearchModel;
@@ -41,14 +42,22 @@ static NSString * const kSearchLimit       = @"3";
 
 
 - (void)request:(NSString *)searchTerm
+          limit:(NSInteger)limit
+         offset:(NSInteger)offset
        location:(NSString *)location
      completion:(void (^)(id response, NSError *error))completion {
     
     NSDictionary *params;
     if (!searchTerm || !location) {
-        params = @{@"term":@"burgers", @"location":@"Anaheim"};
+        params = @{@"term":@"burgers",
+                   @"location":@"Anaheim",
+                   @"limit":[NSString stringWithFormat:@"%li",(long)limit],
+                   @"offset":[NSString stringWithFormat:@"%li",(long)offset]};
     } else {
-        params = @{@"term": searchTerm, @"location":location};
+        params = @{@"term": searchTerm,
+                   @"location":location,
+                   @"limit":[NSString stringWithFormat:@"%li",(long)limit],
+                   @"offset":[NSString stringWithFormat:@"%li",(long)offset]};
     }
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -57,13 +66,18 @@ static NSString * const kSearchLimit       = @"3";
     __weak typeof(self) weakSelf = self;
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (error) {
-            NSLog(@"Error: %@", error);
+//            NSLog(@"Error: %@", error);
             completion(nil, error);
         } else {
-            NSLog(@"%@ %@", response, responseObject);
-            WMSearchTermModel *model = [[WMSearchTermModel alloc] initWithModel:responseObject];
-            weakSelf.currentSearchModel = model;
-            completion(model, nil);
+//            NSLog(@"%@ %@", response, responseObject);
+            if (offset == 0) {
+                WMSearchTermModel *model = [[WMSearchTermModel alloc] initWithModel:responseObject];
+                weakSelf.currentSearchModel = model;
+                completion(model, nil);
+            } else {
+                [weakSelf.currentSearchModel addItems:(NSDictionary *)responseObject];
+                completion(weakSelf.currentSearchModel, nil);
+            }
         }
     }];
     [dataTask resume];

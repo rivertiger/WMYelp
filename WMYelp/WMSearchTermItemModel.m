@@ -14,8 +14,8 @@
 
 - (instancetype)initWithDict:(NSDictionary *)dict {
     if (self = [super init]) {
-        _name = dict[@"name"];
-        _imageURL = dict[@"imageURL"];
+        _name = [dict[@"name"] copy];
+        _imageURL = [dict[@"image_url"] copy];
         
     }
     return self;

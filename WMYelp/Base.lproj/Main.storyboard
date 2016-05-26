@@ -92,10 +92,10 @@
             </objects>
             <point key="canvasLocation" x="590" y="345"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--Search Collection View Controller-->
         <scene sceneID="5le-hg-Q6S">
             <objects>
-                <viewController storyboardIdentifier="detailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ax7-vL-IJp" customClass="WMDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="collectionVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ax7-vL-IJp" customClass="WMSearchCollectionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IfX-Pi-ygK"/>
                         <viewControllerLayoutGuide type="bottom" id="ghi-lV-Wbu"/>
@@ -103,9 +103,53 @@
                     <view key="view" contentMode="scaleToFill" id="BBe-wf-euh">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6Mn-BL-hqJ">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="9ae-jh-xam">
+                                    <size key="itemSize" width="150" height="150"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionCell" id="Tbi-Rm-WWd" customClass="WMSearchCollectionViewCell">
+                                        <rect key="frame" x="0.0" y="64" width="150" height="150"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i1o-Cd-u0k">
+                                                    <rect key="frame" x="-45" y="11" width="187" height="128"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <size key="customSize" width="150" height="150"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="i1o-Cd-u0k" id="Dc0-f7-Yyp"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Ax7-vL-IJp" id="96M-o7-Sps"/>
+                                    <outlet property="delegate" destination="Ax7-vL-IJp" id="1yy-aP-Uwp"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ghi-lV-Wbu" firstAttribute="top" secondItem="6Mn-BL-hqJ" secondAttribute="bottom" id="8RG-M5-FCz"/>
+                            <constraint firstItem="6Mn-BL-hqJ" firstAttribute="leading" secondItem="BBe-wf-euh" secondAttribute="leading" id="Flj-sP-K2w"/>
+                            <constraint firstAttribute="trailing" secondItem="6Mn-BL-hqJ" secondAttribute="trailing" id="fBr-Dw-mpe"/>
+                            <constraint firstItem="6Mn-BL-hqJ" firstAttribute="top" secondItem="IfX-Pi-ygK" secondAttribute="bottom" id="qnR-tr-m1d"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mDU-G8-KWp"/>
+                    <connections>
+                        <outlet property="collectionView" destination="6Mn-BL-hqJ" id="9ql-CO-tEq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C9N-mG-Gg3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -17,6 +17,8 @@
 + (instancetype)sharedManager;
 
 - (void)request:(NSString *)searchTerm
+          limit:(NSInteger)limit
+         offset:(NSInteger)offset
        location:(NSString *)location
      completion:(void (^)(id response, NSError *error))completion;
 @end

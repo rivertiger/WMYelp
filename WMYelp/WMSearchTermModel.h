@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface WMSearchTermModel : NSObject
-@property (nonatomic, strong, readonly) NSArray *businesses;
+@property (nonatomic, strong, readonly) NSMutableArray *businesses;
 
 - (instancetype)initWithModel:(NSDictionary *)dict;
-
+- (void)addItems:(NSDictionary *)responseObject;
 
 @end

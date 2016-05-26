@@ -10,6 +10,8 @@
 		524A439B1CF74E9300EAC473 /* NSURLRequest+TDOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 524A439A1CF74E9300EAC473 /* NSURLRequest+TDOAuth.m */; };
 		524A439F1CF7539300EAC473 /* WMSearchTermModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 524A439E1CF7539300EAC473 /* WMSearchTermModel.m */; };
 		524A43A21CF756F200EAC473 /* WMSearchTermItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 524A43A11CF756F200EAC473 /* WMSearchTermItemModel.m */; };
+		524A43A91CF763A500EAC473 /* WMSearchCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 524A43A81CF763A500EAC473 /* WMSearchCollectionViewController.m */; };
+		524A43AD1CF76BB200EAC473 /* WMSearchCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 524A43AC1CF76BB200EAC473 /* WMSearchCollectionViewCell.m */; };
 		527DF5C21CF4C51900663D80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 527DF5C11CF4C51900663D80 /* main.m */; };
 		527DF5C51CF4C51900663D80 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 527DF5C41CF4C51900663D80 /* AppDelegate.m */; };
 		527DF5CB1CF4C51900663D80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 527DF5C91CF4C51900663D80 /* Main.storyboard */; };
@@ -30,6 +32,10 @@
 		524A439E1CF7539300EAC473 /* WMSearchTermModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSearchTermModel.m; sourceTree = "<group>"; };
 		524A43A01CF756F200EAC473 /* WMSearchTermItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSearchTermItemModel.h; sourceTree = "<group>"; };
 		524A43A11CF756F200EAC473 /* WMSearchTermItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSearchTermItemModel.m; sourceTree = "<group>"; };
+		524A43A71CF763A500EAC473 /* WMSearchCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSearchCollectionViewController.h; sourceTree = "<group>"; };
+		524A43A81CF763A500EAC473 /* WMSearchCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSearchCollectionViewController.m; sourceTree = "<group>"; };
+		524A43AB1CF76BB200EAC473 /* WMSearchCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSearchCollectionViewCell.h; sourceTree = "<group>"; };
+		524A43AC1CF76BB200EAC473 /* WMSearchCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSearchCollectionViewCell.m; sourceTree = "<group>"; };
 		527DF5BD1CF4C51900663D80 /* WMYelp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WMYelp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		527DF5C11CF4C51900663D80 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		527DF5C31CF4C51900663D80 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -143,6 +149,10 @@
 				527DF5DB1CF4C61000663D80 /* WMDetailViewController.m */,
 				52F8BE981CF4D3FC00E1EDA1 /* WMSearchResultTableViewCell.h */,
 				52F8BE991CF4D3FC00E1EDA1 /* WMSearchResultTableViewCell.m */,
+				524A43A71CF763A500EAC473 /* WMSearchCollectionViewController.h */,
+				524A43A81CF763A500EAC473 /* WMSearchCollectionViewController.m */,
+				524A43AB1CF76BB200EAC473 /* WMSearchCollectionViewCell.h */,
+				524A43AC1CF76BB200EAC473 /* WMSearchCollectionViewCell.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -286,6 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				524A43A91CF763A500EAC473 /* WMSearchCollectionViewController.m in Sources */,
 				52F8BE9A1CF4D3FC00E1EDA1 /* WMSearchResultTableViewCell.m in Sources */,
 				524A439F1CF7539300EAC473 /* WMSearchTermModel.m in Sources */,
 				524A439B1CF74E9300EAC473 /* NSURLRequest+TDOAuth.m in Sources */,
@@ -294,6 +305,7 @@
 				524A43A21CF756F200EAC473 /* WMSearchTermItemModel.m in Sources */,
 				527DF5DC1CF4C61000663D80 /* WMDetailViewController.m in Sources */,
 				527DF5C21CF4C51900663D80 /* main.m in Sources */,
+				524A43AD1CF76BB200EAC473 /* WMSearchCollectionViewCell.m in Sources */,
 				527DF5D91CF4C54500663D80 /* WMSearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,8 +11,13 @@
 #import "WMDetailViewController.h"
 #import "MBProgressHUD.h"
 #import "WMSearchResultTableViewCell.h"
+#import "WMSearchCollectionViewController.h"
 
 static NSString *cellIdentifier = @"cell";
+
+//NOTE: NO - show results in tableView, YES - will push the search results to collectionView
+#define FLAG_TO_PUSHCOLLECTIONVIEW_AUTOMATIC  YES
+
 
 @interface WMSearchViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
@@ -30,8 +35,10 @@ static NSString *cellIdentifier = @"cell";
     
     //Using default values
     self.navigationItem.title = @"Anaheim";
-    self.searchBar.text = @"burgers";
-    [self queryYelp:@"burgers"];
+    if (!FLAG_TO_PUSHCOLLECTIONVIEW_AUTOMATIC) {
+        self.searchBar.text = @"burgers";
+        [self queryYelp:@"burgers" offset:0];
+    }
 }
 
 
@@ -53,11 +60,7 @@ static NSString *cellIdentifier = @"cell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    WMSearchTermItemModel *item = [WMRequestManager sharedManager].currentSearchModel.businesses[indexPath.row];
-    UIStoryboard *main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    WMDetailViewController *detailVC = [main instantiateViewControllerWithIdentifier:@"detailVC"];
-    detailVC.navigationItem.title = item.name;
-    [self.navigationController pushViewController:detailVC animated:YES];
+    [self pushToCollectionView];
 }
 
 
@@ -78,8 +81,7 @@ static NSString *cellIdentifier = @"cell";
     self.searchTerm = searchBar.text;
     //NSLog(@"Found a new search %@", self.searchTerm);
     [ self.navigationItem.titleView resignFirstResponder ];
-    
-    [self queryYelp:searchBar.text];
+    [self queryYelp:searchBar.text offset:0];
 }
 
 - (void) hideKeyboard {
@@ -87,7 +89,9 @@ static NSString *cellIdentifier = @"cell";
 //    [ self.tableView removeGestureRecognizer:self.tapKeyBoardResignGesture];
     //self.tapKeyBoardResignGesture.cancelsTouchesInView = YES;
 }
- - (void)queryYelp:(NSString *)searchTerm {
+
+- (void)queryYelp:(NSString *)searchTerm
+           offset:(NSInteger)offset {
         
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
      
@@ -97,11 +101,22 @@ static NSString *cellIdentifier = @"cell";
         [ defaults synchronize];
         __weak typeof(self) weakSelf = self;
         [[WMRequestManager sharedManager] request:self.searchTerm
+                                            limit:10
+                                           offset:offset
                                          location:@"Anaheim"
                                           completion:^(id response, NSError *error) {
                                               [weakSelf.tableView reloadData];
                                               [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:NO];
+                                              if (FLAG_TO_PUSHCOLLECTIONVIEW_AUTOMATIC) {
+                                                  [weakSelf pushToCollectionView];
+                                              }
                                           }];
      
+}
+
+- (void)pushToCollectionView {
+    UIStoryboard *main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    WMSearchCollectionViewController *detailVC = [main instantiateViewControllerWithIdentifier:@"collectionVC"];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 @end
